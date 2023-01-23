@@ -18,19 +18,20 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
+// Function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (!license) {
     return "";
   } else {
-    return `This project is using this ${license} license`;
+    return `${license}`;
   }
 }
 
-// TODO: Create a function to generate markdown for README
+// Function to generate markdown for README
 function generateMarkdown(data) {
   return `
+  <base target="_blank">
   # ${data.title}
   ${renderLicenseBadge(data.license)}
 
@@ -38,12 +39,12 @@ function generateMarkdown(data) {
   ${data.description}
 
   ## Table of Contents
- [Installation](#Installation)
- [Usage](#Usage)
- [License](#License)
- [Contribution](#Contribution)
- [Tests](#Tests)
- [Questions](#Questions)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contribution](#contribution)
+  * [Tests](#tests)
+  * [Questions](#questions)
 
   ## Installation
   ${data.installation}
@@ -52,8 +53,8 @@ function generateMarkdown(data) {
   ${data.usage}
 
   ## License
-  ${renderLicenseSection(data.license)}
-  ${renderLicenseLink(data.license)}
+  This project uses the License
+  [${renderLicenseSection(data.license)}](${renderLicenseLink(data.license)})
 
   ## Contribution 
   ${data.contribution}
@@ -62,8 +63,12 @@ function generateMarkdown(data) {
   ${data.test}
 
   ## Questions
-  ${data.questions}
+  If you would like more information you can check out my GitHub at: 
+  [${data.username}](https://github.com/${data.username})
+  Or if you have any further questions send an email to:
+  ${data.email}
 
+  ---
 `;
 }
 

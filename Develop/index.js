@@ -1,101 +1,103 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown")
 
-// TODO: Create an array of questions for user input
+// Array of questions for user input
 const questions = [
   {
     type: "input",
-    message: "What is your Name?",
+    message: "What is the Filename of the generated README?",
     name: "name",
   },  
   {
     type: "input",
-    message: "What is your Project Title?",
+    message: "What is the Title of your project?",
     name: "title",
   },
   {
     type: "input",
-    message: "Enter the description for your README:",
+    message: "Give a description of your project:",
     name: "description",
   },
   {
     type: "input",
-    message: "Enter the installation instructions for your README:",
+    message: "Enter the installation instructions for your project:",
     name: "installation",
   },
   {
     type: "input",
-    message: "Enter the usage information for your README:",
+    message: "Explain the usage of this application:",
     name: "usage",
   },
   {
     type: "list",
-    message: "Enter license for your README:",
+    message: "Enter the license you have for your project:",
     name: "license",
-    choices: ["Academic Free License v3.0", 
-    "Apache license 2.0", 
-    "Artistic license 2.0", 
-    "Boost Software License 1.0", 
-    "BSD 2-clause license",
-    "BSD 3-clause license",
-    "Creative Commons license",
-    "Do What The F*ck You Want To Public License",
-    "Educational Community License v2.0",
-    "Eclipse Public License 1.0",
-    "Eclipse Public License 2.0",
-    "European Union Public License 1.1",
-    "GNU Affero General Public License v3.0",
-    "GNU General Public License v2.0",
-    "GNU General Public License v3.0",
-    "GNU Lesser General Public License v2.1",
-    "GNU Lesser General Public License v3.0",
+    choices: ["Academic_Free_License_v3.0", 
+    "Apache_license_2.0", 
+    "Artistic_license_2.0", 
+    "Boost_Software_License_1.0", 
+    "BSD_2-clause_license",
+    "BSD_3-clause_license",
+    "Creative_Commons_license",
+    "Do_What_The_F*ck_You_Want_To_Public_License",
+    "Educational_Community_License_v2.0",
+    "Eclipse_Public_License_1.0",
+    "Eclipse_Public_License_2.0",
+    "European_Union_Public_License_1.1",
+    "GNU_Affero_General_Public_License_v3.0",
+    "GNU_General_Public_License_v2.0",
+    "GNU_General_Public_License_v3.0",
+    "GNU_Lesser_General_Public_License_v2.1",
+    "GNU_Lesser_General_Public_License_v3.0",
     "ISC",
-    "LaTeX Project Public License v1.3c",
-    "Microsoft Public License",
+    "LaTeX_Project_Public_License_v1.3c",
+    "Microsoft_Public_License",
     "MIT",
-    "Mozilla Public License 2.0",
-    "Open Software License 3.0",
-    "PostgreSQL License",
-    "SIL Open Font License 1.1",
-    "University of Illinois/NCSA Open Source License",
-    "The Unlicense",
-    "zLib License"]
+    "Mozilla_Public_License_2.0",
+    "Open_Software_License_3.0",
+    "PostgreSQL_License",
+    "SIL_Open_Font_License_1.1",
+    "University_of_Illinois/NCSA_Open_Source_License",
+    "The_Unlicense",
+    "zLib_License"]
   },
   {
     type: "input",
-    message: "Enter the contribution guidelines for your README:",
+    message: "Enter the contribution guidelines:",
     name: "contribution",
   },
   {
     type: "input",
-    message: "Enter the test instructions for your README:",
+    message: "Enter the test instructions:",
     name: "test",
   },  
   {
     type: "input",
-    message: "Enter the questions for your README:",
-    name: "questions",
+    message: "Type your github username:",
+    name: "username",
+  },
+  {
+    type: "input",
+    message: "Enter your email to contant you for questions:",
+    name: "email",
   },
   
 ];
 
-// TODO: Create a function to write README file
+// Function to write README file
 function writeToFile() {
   inquirer.prompt(questions)
   .then((data) =>
-  fs.appendFile(`${(data.name.toUpperCase())}'s-README.md`, generateMarkdown(data), (err) =>
+  fs.appendFile(`${(data.name.toUpperCase())}-README.md`, generateMarkdown(data), (err) =>
   err ? console.error(err) : console.log('README Created!')))
 }
     
-// TODO: Create a function to initialize app
+// Function to initialize app
 function init() {
   writeToFile()
 }
 
 // Function call to initialize app
 init();
-
-
-// ------TODO Clean up License List (remove spaces and sort out links)----------------
