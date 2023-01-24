@@ -1,4 +1,4 @@
-// Function that returns a license badge and its link based on which license is passed in
+// Function that returns a license badge and its link based on the license
 // If there is no license, return an empty string
 function renderLicenseBadgeLink(license) {
   if (!license) {
@@ -78,18 +78,15 @@ function renderLicenseSection(license) {
     return "";
   } else {
     return `This project uses the License:
-    "${(license).split('_').join(' ')}"`;
+    "${license.split("_").join(" ")}"`;
   }
 }
 
 // Function to generate markdown for README
 function generateMarkdown(data) {
   return `
-  <base target="_blank">
 
-  # ${data.title}
-  
-  ${renderLicenseBadgeLink(data.license)}
+  # ${data.title} ${renderLicenseBadgeLink(data.license)}
 
   ## Description
   ${data.description}
