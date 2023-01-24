@@ -1,15 +1,10 @@
 // Packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkdown = require("./utils/generateMarkdown")
+const generateMarkdown = require("./generateMarkdown")
 
 // Array of questions for user input
 const questions = [
-  {
-    type: "input",
-    message: "What is the Filename of the generated README?",
-    name: "name",
-  },  
   {
     type: "input",
     message: "What is the Title of your project?",
@@ -32,34 +27,26 @@ const questions = [
   },
   {
     type: "list",
-    message: "Enter the license you have for your project:",
+    message: "Select the license you have for your project:",
     name: "license",
-    choices: ["Academic_Free_License_v3.0", 
-    "Apache_license_2.0", 
+    choices: ["Apache_license_2.0", 
     "Artistic_license_2.0", 
     "Boost_Software_License_1.0", 
     "BSD_2-clause_license",
     "BSD_3-clause_license",
     "Creative_Commons_license",
     "Do_What_The_F*ck_You_Want_To_Public_License",
-    "Educational_Community_License_v2.0",
     "Eclipse_Public_License_1.0",
     "Eclipse_Public_License_2.0",
-    "European_Union_Public_License_1.1",
     "GNU_Affero_General_Public_License_v3.0",
     "GNU_General_Public_License_v2.0",
     "GNU_General_Public_License_v3.0",
     "GNU_Lesser_General_Public_License_v2.1",
     "GNU_Lesser_General_Public_License_v3.0",
     "ISC",
-    "LaTeX_Project_Public_License_v1.3c",
-    "Microsoft_Public_License",
     "MIT",
     "Mozilla_Public_License_2.0",
-    "Open_Software_License_3.0",
-    "PostgreSQL_License",
     "SIL_Open_Font_License_1.1",
-    "University_of_Illinois/NCSA_Open_Source_License",
     "The_Unlicense",
     "zLib_License"]
   },
@@ -70,7 +57,7 @@ const questions = [
   },
   {
     type: "input",
-    message: "Enter the test instructions:",
+    message: "Enter test instructions:",
     name: "test",
   },  
   {
@@ -89,9 +76,10 @@ const questions = [
 // Function to write README file
 function writeToFile() {
   inquirer.prompt(questions)
-  .then((data) =>
-  fs.appendFile(`${(data.name.toUpperCase())}-README.md`, generateMarkdown(data), (err) =>
-  err ? console.error(err) : console.log('README Created!')))
+  .then((data) => {
+  let filename = data.title.toUpperCase().split(' ').join('_')
+  fs.appendFile(`./GeneratedReadmes/${(filename)}-README.md`, generateMarkdown(data), (err) =>
+  err ? console.error(err) : console.log('README Created!'))})
 }
     
 // Function to initialize app
